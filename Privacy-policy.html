@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; line-height: 1.6; }
+    h1 { font-size: 1.5em; color: #2c3e50; }
+    h2 { font-size: 1.2em; color: #444; margin-top: 1em; }
+    select { margin-top: 1em; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <select id="language-select">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="te">తెలుగు</option>
+    <option value="kn">ಕನ್ನಡ</option>
+    <option value="ta">தமிழ்</option>
+    <option value="mr">मराठी</option>
+    <option value="bn">বাংলা</option>
+    <option value="or">ଓଡ଼ିଆ</option>
+  </select>
+
+  <div id="content"></div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Privacy Policy",
+        content: `
+          <p>This app is a community tool to manage ration and personal documents securely.</p>
+          <h2>1. App Permissions</h2>
+          <p>This app may request permission to access your camera or files only to upload selected documents like Aadhaar or Ration Card. These files are stored in your Google Drive and not accessed by us.</p>
+          <h2>2. No Data Collection</h2>
+          <p>We do not collect or store any personal information. Your data remains within your own device and Google account.</p>
+          <h2>3. Data Deletion</h2>
+          <p>You can delete your data anytime from your Google Drive. We have no access and cannot restore deleted files.</p>
+          <h2>4. User Consent</h2>
+          <p>By using this app, you agree you have the right to upload documents for yourself or others (e.g., family).</p>
+          <h2>5. Security</h2>
+          <p>We use secure Google login methods. Your credentials are never seen or stored by the app.</p>
+          <h2>6. Third-Party Services</h2>
+          <p>The app uses Google Drive and Google login services. These follow Google's own privacy policy.</p>
+          <p><em>This is a non-governmental app. It is not officially affiliated with any government agency.</em></p>
+        `
+      },
+      hi: {
+        title: "गोपनीयता नीति",
+        content: `
+          <p>यह ऐप राशन और व्यक्तिगत दस्तावेज़ों को सुरक्षित रूप से प्रबंधित करने का एक सामुदायिक उपकरण है।</p>
+          <h2>1. ऐप अनुमतियाँ</h2>
+          <p>यह ऐप केवल आधार या राशन कार्ड जैसे दस्तावेज़ अपलोड करने के लिए कैमरा या फाइल की अनुमति मांग सकता है। ये फाइलें आपके Google ड्राइव में संग्रहित होती हैं।</p>
+          <h2>2. डेटा संग्रह नहीं</h2>
+          <p>हम कोई भी व्यक्तिगत जानकारी एकत्र नहीं करते। आपका डेटा केवल आपके डिवाइस और Google खाते में रहता है।</p>
+          <h2>3. डेटा हटाना</h2>
+          <p>आप कभी भी अपने Google ड्राइव से डेटा हटा सकते हैं। हमें इसकी कोई पहुंच नहीं है।</p>
+          <h2>4. उपयोगकर्ता सहमति</h2>
+          <p>इस ऐप का उपयोग करके, आप पुष्टि करते हैं कि आपके पास अपने या परिवार के सदस्यों के दस्तावेज़ अपलोड करने की अनुमति है।</p>
+          <h2>5. सुरक्षा</h2>
+          <p>हम सुरक्षित Google लॉगिन विधियों का उपयोग करते हैं। आपके क्रेडेंशियल ऐप द्वारा नहीं देखे या सहेजे जाते।</p>
+          <h2>6. तृतीय-पक्ष सेवाएँ</h2>
+          <p>यह ऐप Google Drive और लॉगिन सेवाओं का उपयोग करता है। ये सेवाएं अपनी स्वयं की नीति का पालन करती हैं।</p>
+          <p><em>यह एक गैर-सरकारी ऐप है। यह किसी भी सरकारी एजेंसी से आधिकारिक रूप से संबद्ध नहीं है।</em></p>
+        `
+      },
+      te: { title: "గోప్యతా విధానం", content: "..." },
+      kn: { title: "ಗೋಪ್ಯತಾ ನೀತಿ", content: "..." },
+      ta: { title: "தனியுரிமைக் கொள்கை", content: "..." },
+      mr: { title: "गोपनीयता धोरण", content: "..." },
+      bn: { title: "গোপনীয়তা নীতি", content: "..." },
+      or: { title: "ଗୋପନୀୟତା ନୀତି", content: "..." }
+    };
+
+    function updateLanguage(lang) {
+      const t = translations[lang] || translations["en"];
+      document.getElementById("title").innerText = t.title;
+      document.getElementById("content").innerHTML = t.content;
+    }
+
+    const defaultLang = navigator.language.slice(0, 2);
+    const supportedLangs = Object.keys(translations);
+    const currentLang = supportedLangs.includes(defaultLang) ? defaultLang : "en";
+
+    document.getElementById("language-select").value = currentLang;
+    updateLanguage(currentLang);
+
+    document.getElementById("language-select").addEventListener("change", (e) => {
+      updateLanguage(e.target.value);
+    });
+  </script>
+</body>
+</html>
